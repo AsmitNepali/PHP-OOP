@@ -7,8 +7,8 @@
 			$this->members = $members;
 		}
 
-		public static function start($name, $members = []){
-			return new static($name, $members);
+		public static function start(...$param){
+			return new static(...$param);
 		}
 
 		public function  name(){
