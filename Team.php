@@ -31,7 +31,7 @@
 
 		}
 	}
-	$team = new Team('FOF',[
+	$team =Team::start('FOF',[
 		'Asmit Nepali',
 		'Saurav Sen'
 	]);
