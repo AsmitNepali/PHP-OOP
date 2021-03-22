@@ -31,9 +31,16 @@
 
 		}
 	}
+
+	class Member{
+		protected $name;
+		public function __construct($name){
+			$this->name = $name;
+		}
+	}
 	$team =Team::start('FOF',[
-		'Asmit Nepali',
-		'Saurav Sen'
+		new Member('Asmit Nepali'),
+		new Member('Asmit Mizar')
 	]);
 	// $team->add('Asmit Nepali');
 	// $team->add('Shreejan Pandit');
