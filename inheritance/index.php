@@ -27,7 +27,15 @@
 		}
 	}
 
-	$collection = new  Collection([
+	class VideoCollection extends Collection
+	{
+		public function length()
+		{
+			return $this->sum('length');
+		}
+	}
+	
+	$collection = new  VideoCollection([
 		new Video('Video', 100),
 		new Video('Video2', 100),
 		new Video('Video3', 100),
