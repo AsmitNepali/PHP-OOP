@@ -10,7 +10,7 @@
 
 		public function sum($key)
 		{
-			return array_sum(array_map(fn($items) => $items->$key, $this->items));
+			return array_sum(array_column($this->items,$key));
 		}
 	}
 
