@@ -1,17 +1,36 @@
-<?php 
-	class CoffeeMaker
+<?php
+	class Collection 
 	{
-		public function brew()
+		protected array $items;
+		
+		public function __construct(array $item)
 		{
-			var_dump('Brewing the coffee');
+			$this->items = $item;
+		}
+
+		public function sum($key)
+		{
+			return array_sum(array_map(function($items) use ($key){
+				return $items->$key;
+			}, $this->items));
 		}
 	}
-	// is a" 
-	class SpecialityCoffeeMaker extends CoffeeMaker
+
+	class Video
 	{
-		public function brewLatte()
+		public $title;
+		public $length;
+		public function __construct($title, $length)
 		{
-			var_dump('Brewing a Latte');
+			$this->title = $title;
+			$this->length = $length;
 		}
 	}
-	(new SpecialityCoffeeMaker())->brew();
+
+	$collection = new  Collection([
+		new Video('Video', 100),
+		new Video('Video2', 100),
+		new Video('Video3', 100),
+	]);
+	
+	echo($collection->sum('length'));
