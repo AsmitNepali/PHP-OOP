@@ -1,8 +1,9 @@
 <?php
 
 use App\Achievements\Models\Achievement;
+use Mockery\Expectation;
 
-class AchievementType {
+abstract class AchievementType {
         private $className = "Achievement Type";
         public function name() {
             $this->className =  (new ReflectionClass($this))->getShortName();
@@ -11,40 +12,29 @@ class AchievementType {
 
         public function icon() {
             return str_replace(' ', '-', $this->className);
-           
         }
+
+        abstract public function qualifire($user);
 
     }
 
-    class FirstThousandPoints {
-        public function name() {
+    class FirstThousandPoints extends AchievementType {
 
-        }
-
-        public function icon() {
-
-        }
-
-        public function qualifire() {
+        public function qualifire($user) {
 
         }
     }
 
 
-    class FirstBestAnswer {
-        public function name() {
-            return "First Best Answer";
-        }
-
-        public function icon() {
-            return "php-oop.png";
-        }
-
-        public function qualifire() {
-
+    class FirstBestAnswer extends AchievementType {
+    
+        public function qualifire($user)
+        {
+            
         }
     }
 
-    $achievement = new AchievementType();
-    // $achievement->name();
-    echo($achievement->icon());
+    // Cannot instantiate abstract class
+    // $achievement = new AchievementType();
+    $obj = new FirstBestAnswer();
+    echo($obj->qualifire('user'));
