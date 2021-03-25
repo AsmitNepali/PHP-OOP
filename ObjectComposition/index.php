@@ -3,12 +3,12 @@
     class Subscription {
 
         /** 
-         * @var \StripeGateway  
+         * @var \Gateway  
         */
 
-        protected StripeGateway $gateway;
+        protected Gateway $gateway;
 
-        public function __construct(StripeGateway $gateway)
+        public function __construct(Gateway $gateway)
         {
             
         }
@@ -29,8 +29,13 @@
         }
     }
 
+    interface Gateway {
+        public function findStripeCustomer();
 
-    class StripeGateway {
+        public function findStripeSubscriptionByCustomer();
+    }
+
+    class StripeGateway implements Gateway {
 
         public function findStripeCustomer() {
 
@@ -40,3 +45,5 @@
 
         }
     }
+
+    new Subscription(new StripeGateway());
